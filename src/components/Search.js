@@ -8,7 +8,7 @@ function Search() {
 
   return (
     <div>
-      <div className="ui form">
+      <div className="ui form 3">
         <div className="field">
           <label>Enter Search Term</label>
           <input
