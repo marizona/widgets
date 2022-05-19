@@ -4,11 +4,10 @@ import React, { useEffect, useState } from "react";
 function Search() {
   const [term, setTerm] = useState("programming");
   const [results, setResults] = useState([]);
-  
 
   useEffect(() => {
     const search = async () => {
-      const {data} = await axios.get("https://en.wikipedia.org/w/api.php", {
+      const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
         params: {
           action: "query",
           list: "search",
@@ -19,10 +18,19 @@ function Search() {
       });
       setResults(data.query.search);
     };
-if(term){
-search();
-}
-    
+    if (term && !results.length) {
+      search();
+    } else {
+      const timeoutId = setTimeout(() => {
+        if (term) {
+          search();
+        }
+      }, 800);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
   }, [term]);
 
   const renderedResults = results.map((result) => {
