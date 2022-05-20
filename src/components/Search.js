@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState, debouncedTerm } from "react";
+import search from './search.css'
+
+
 
 function Search() {
   const [term, setTerm] = useState("programming");
   const [results, setResults] = useState([]);
+    const [toogle, setToogle] = useState(false);
 
   useEffect(() => {
     const search = async () => {
@@ -58,7 +62,7 @@ function Search() {
         <div className="content">
           <a
             href={`https://en.wikipedia.org?curid=${result.pageid}`}
-            className="header"
+            className='header'
           >
             {result.title}
           </a>
@@ -80,7 +84,9 @@ function Search() {
           />
         </div>
       </div>
-      <div className="ui celled list">{renderedResults}</div>
+      <div  className="ui celled list">
+        {renderedResults}
+      </div>
     </div>
   );
 }
